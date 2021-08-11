@@ -35,10 +35,14 @@ export class HomeComponent implements OnInit {
     .subscribe(
       data => {console.log(data)
         if(data.status=='company exist')
-          this.toastr.error('Already Exsist to your watchlist', companyName,{positionClass:"toast-bottom-center"});
-        else
+          this.toastr.error('Already Exists in your watchlist', companyName,{positionClass:"toast-bottom-center"});
+        else{
           this.toastr.info('Successfully added to your Watch list', companyName,{positionClass:"toast-bottom-center"});
-      },
+          this.goToWatchList();
+          
+          // console.log(data)
+      }
+    },
       error => {
           console.log(error)
       }
@@ -52,5 +56,13 @@ export class HomeComponent implements OnInit {
   goToDetailedView(companyId)
   {    
     this.router.navigate(['view',companyId])
+  }
+
+  goToWatchList(){
+    this.router.navigate(['watch'])
+  }
+  
+  saveToWatchlist(){
+
   }
 }

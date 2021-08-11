@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetDataService } from '../../services/get-data.service';
 @Component({
   selector: 'app-profile',
@@ -7,7 +8,7 @@ import { GetDataService } from '../../services/get-data.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private getDataservice: GetDataService) { }
+  constructor(private getDataservice: GetDataService, private router: Router) { }
   userDetails;
   ngOnInit() {
     this.getDataservice.getUserDeatils(localStorage.getItem('username'))
@@ -17,6 +18,10 @@ export class ProfileComponent implements OnInit {
       },
       error => { }
     )
+  }
+
+  goToAddFunds(){
+    this.router.navigate(['addfunds'])
   }
 
 }

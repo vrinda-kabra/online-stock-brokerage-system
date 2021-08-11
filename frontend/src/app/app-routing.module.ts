@@ -9,8 +9,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ViewComponent } from './components/view/view.component';
 import { MySharesComponent } from './components/my-shares/my-shares.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { UnderProgressComponent } from './components/under-progress/under-progress.component'
 import { AddfundsComponent } from './components/addfunds/addfunds.component';
+import { OrdersComponent } from './orders/orders.component';
 
 export const AppRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,7 +22,8 @@ export const AppRoutes: Routes = [
   { path: 'view/:id', component: ViewComponent },
   { path: 'my-shares', component: MySharesComponent },
   { path: 'logout', component: LogoutComponent },
-  {path: 'addfunds', component: AddfundsComponent}
+  {path: 'addfunds', component: AddfundsComponent},
+  {path: 'orders', component:OrdersComponent}
 ];
 
 @NgModule({

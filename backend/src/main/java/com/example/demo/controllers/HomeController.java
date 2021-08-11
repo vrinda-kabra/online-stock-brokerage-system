@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,16 @@ import com.example.demo.repository.WatchListRepository;
 @CrossOrigin(origins = "*")
 public class HomeController {
 
+	void generateRandomNumber() {
+		int min = 50;
+	      int max = 100;
+	        
+	      //Generate random int value from 50 to 100 
+	      System.out.println("Random value in int from "+min+" to "+max+ ":");
+	      int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+	      System.out.println(random_int);
+	}
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -189,14 +200,16 @@ public class HomeController {
 		List<CompanyModel> allCompany = (List<CompanyModel>)companyRepository.findAll();
 		List<WatchListModel> allWatchList = (List<WatchListModel>)watchListRepository.findAll();
 		
-		try 
-		{
+		/* 
+		 * get company details based on the company_id which is received in the api request
+		 * use company_id and user_id to directly add details in the watch_list table.
+		 */
+		
+		try {
 			Iterator<WatchListModel> iter1 = allWatchList.iterator();
-			while(iter1.hasNext())
-			{
+			while(iter1.hasNext()){
 				WatchListModel wl = (WatchListModel) iter1.next();
-				if(email.equals(wl.getUser_id())&&(id == wl.getCompany_id()))
-				{
+				if(email.equals(wl.getUser_id())&&(id == wl.getCompany_id())){
 					HashMap<String, String> map = new HashMap<>();
 					map.put("status", "company exist");
 					return map;
@@ -204,18 +217,14 @@ public class HomeController {
 			}
 			
 			Iterator<CompanyModel> iter2 = allCompany.iterator();
-			while(iter2.hasNext())
-			{
+			while(iter2.hasNext())			{
 				CompanyModel cm = (CompanyModel) iter2.next();
-				if(id == cm.getCompany_id())
-				{
+				if(id == cm.getCompany_id())				{
 					WatchListModel wl = new WatchListModel(cm.getCompany_id(),cm.getName(),email,cm.getOpen_rate(),cm.getClose_rate(),cm.getPeak_rate(),cm.getLeast_rate(),cm.getCurrent_rate(),cm.getYear_low(),cm.getYear_high(),cm.getMarket_cap(),cm.getP_e_ratio(),cm.getVolume());
 					watchListRepository.save(wl);
 				}
 			}
-		}
-		catch(Exception e)		
-		{	
+		}catch(Exception e){	
 			HashMap<String, String> map = new HashMap<>();
 			map.put("status", e.getMessage());
 			return map;
@@ -421,5 +430,10 @@ public class HomeController {
 			map.put("status", e.getMessage());
 			return map;
 		}
+		
+//		@PostMapping("/addfunds")
+		//@PutMApping("/updatefunds")
+		
+		
 	}
 }

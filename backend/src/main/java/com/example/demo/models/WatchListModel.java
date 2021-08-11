@@ -2,6 +2,8 @@ package com.example.demo.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,9 +11,6 @@ import javax.persistence.Table;
 @Table(name = "watch_list")
 
 public class WatchListModel {
-
-	
-	
 	
 	public WatchListModel( int company_id, String name, String user_id, int open_rate, int close_rate,
 			int peak_rate, int least_rate, int current_rate, int year_low, int year_high,
@@ -38,6 +37,7 @@ public class WatchListModel {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="sno")
 	private int sno;
 

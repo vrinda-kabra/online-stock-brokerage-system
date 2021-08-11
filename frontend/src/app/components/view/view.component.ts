@@ -35,11 +35,6 @@ export class ViewComponent implements OnInit {
     this.router.navigate(['buy',this.companyId])
   }
 
-
-
-
-
-  
   public lineChartData: ChartDataSets[] = [
     { data: [380, 350, 370, 390, 360, 370, 400, 380, 390], label: 'IBM', yAxisID: 'y-axis-1' }
   ];

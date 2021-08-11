@@ -71,4 +71,7 @@ export class GetDataService {
     this.url = this.baseUrl + "sell";
     return this.http.post<responseStatus>(this.url, { "email":email, "companyId":id, "quantity":quantity} );               
   }
+  addfunds(){
+    
+  }
 }
